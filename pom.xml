@@ -67,12 +67,6 @@
 			<artifactId>webapp-runner</artifactId>
 			<version>7.0.34.0</version>
 			<scope>provided</scope>
-			<exclusions>
-				<exclusion>
-                     <groupId>org.apache.tomcat</groupId>
-                     <artifactId>catalina</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 	</dependencies>
 
