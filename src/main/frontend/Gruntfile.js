@@ -3,7 +3,7 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         jshint: {
-            files: ['Gruntfile.js', 'src/main/javascript/*.js','src/test/javascript/*.js'],
+            files: ['Gruntfile.js', 'src/main/frontend/javascript/*.js','src/test/frontend/javascript/*.js'],
             options: {
                node: true,
                /* so jshint does not balk about mocha */
@@ -33,7 +33,7 @@ module.exports = function(grunt) {
         },
         karma: {
             config: {
-                configFile: 'src/test/javascript/karma.conf.js',
+                configFile: '../../test/frontend/javascript/karma.conf.js',
                 singleRun: true
             }
         }

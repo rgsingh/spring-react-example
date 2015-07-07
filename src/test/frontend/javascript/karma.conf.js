@@ -1,12 +1,12 @@
 module.exports = function(config) {
     config.set({
-        basePath: '../../..',
+        basePath: '../../../..',
         frameworks: ['jasmine'],
         files: [
-            'src/main/javascript/*.js',
-            'src/test/javascript/*.js'
+            'src/main/frontend/javascript/*.js',
+            'src/test/frontend/javascript/*.js'
         ],
-        exclude: ['src/test/javascript/karma.conf*.js'],
+        exclude: ['src/test/frontend/javascript/karma.conf*.js'],
         reporters: ['progress'],
         port: 9876,
         logLevel: config.LOG_INFO,
