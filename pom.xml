@@ -6,7 +6,6 @@
 	<groupId>com.winterbe.react</groupId>
 	<artifactId>spring-react-example</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
 
 	<name>spring-react-example</name>
 	<description>Spring Boot React Example</description>
