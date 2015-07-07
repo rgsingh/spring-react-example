@@ -4,3 +4,7 @@
 target
 .module-cache
 out
+node
+node_modules
+bower_components
+log.txt
