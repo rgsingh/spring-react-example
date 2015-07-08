@@ -1,10 +1,13 @@
-package com.winterbe.react;
+package com.rgsinfotech.react;
 
 import org.hamcrest.Matchers;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.rgsinfotech.react.Comment;
+import com.rgsinfotech.react.React;
 
 import java.util.ArrayList;
 import java.util.List;

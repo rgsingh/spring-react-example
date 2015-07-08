@@ -1,4 +1,4 @@
-package com.winterbe.react;
+package com.rgsinfotech.react;
 
 /**
  * @author Benjamin Winterberg

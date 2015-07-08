@@ -1,4 +1,4 @@
-package com.winterbe.react;
+package com.rgsinfotech.react;
 
 import jdk.nashorn.api.scripting.NashornScriptEngine;
 
@@ -28,8 +28,10 @@ public class React {
     };
 
     public  String renderCommentBox(List<Comment> comments) {
-        try {
-            Object html = engineHolder.get().invokeFunction("renderServer", comments);
+    	NashornScriptEngine engine = null;
+    	try {
+        	engine = engineHolder.get();
+            Object html = engine.invokeFunction("renderServer", comments);
             return String.valueOf(html);
         }
         catch (Exception e) {

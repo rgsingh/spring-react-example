@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.winterbe.react</groupId>
+	<groupId>com.rgsinfotech.react</groupId>
 	<artifactId>spring-react-example</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
@@ -19,7 +19,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<start-class>com.winterbe.react.Application</start-class>
+		<start-class>com.rgsinfotech.react.Application</start-class>
 		<java.version>1.8</java.version>
 		<jetty.version>9.2.0.v20140526</jetty.version>
 		<servlet-api.version>3.1.0</servlet-api.version>
@@ -27,16 +27,17 @@
 	</properties>
 
 	<dependencies>
+		<!-- Spring Boot -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-actuator</artifactId> 
-			</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 		</dependency>
+
+		<!-- Web -->
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
@@ -45,6 +46,14 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 		</dependency>
+
+		<!-- Database -->
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+		</dependency>
+
+		<!-- Test -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -56,80 +65,80 @@
 			<version>1.7.3</version>
 			<scope>test</scope>
 		</dependency>
-
-
-
-		<!-- Heroku webapp-runner dep <dependency> <groupId>com.github.jsimone</groupId> 
-			<artifactId>webapp-runner</artifactId> <version>7.0.34.0</version> <scope>provided</scope> 
-			</dependency> -->
 	</dependencies>
 
 	<build>
 		<plugins>
-	        <plugin>
-                <groupId>com.github.eirslett</groupId>
-                <artifactId>frontend-maven-plugin</artifactId>
-                <version>0.0.23</version>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+			</plugin>
+
+			<!-- Front-end -->
+			<plugin>
+				<groupId>com.github.eirslett</groupId>
+				<artifactId>frontend-maven-plugin</artifactId>
+				<version>0.0.23</version>
 
 				<configuration>
 					<workingDirectory>src/main/frontend</workingDirectory>
 				</configuration>
-                <executions>
+				<executions>
 
-                    <execution>
-                        <id>install node and npm</id>
-                        <goals>
-                            <goal>install-node-and-npm</goal>
-                        </goals>
-                        <configuration>
-                            <nodeVersion>v0.12.2</nodeVersion>
-                            <npmVersion>2.7.6</npmVersion>
-                        </configuration>
-                    </execution>
+					<execution>
+						<id>install node and npm</id>
+						<goals>
+							<goal>install-node-and-npm</goal>
+						</goals>
+						<configuration>
+							<nodeVersion>v0.12.2</nodeVersion>
+							<npmVersion>2.7.6</npmVersion>
+						</configuration>
+					</execution>
 
-                    <execution>
-                        <id>npm install</id>
-                        <goals>
-                            <goal>npm</goal>
-                        </goals>
-                        <configuration>
-                            <arguments>install</arguments>
-                        </configuration>
-                    </execution>
-                    
-                    <execution>
-                        <id>bower install</id>
-                        <goals>
-                            <goal>bower</goal>
-                        </goals>
-                        <configuration>
-                            <arguments>install</arguments>
-                        </configuration>
-                    </execution>                    
+					<execution>
+						<id>npm install</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<arguments>install</arguments>
+						</configuration>
+					</execution>
 
-                    <execution>
-                        <id>grunt build</id>
-                        <goals>
-                            <goal>grunt</goal>
-                        </goals>
-                        <configuration>
-                            <arguments>--no-color</arguments>
-                        </configuration>
-                    </execution>
+					<execution>
+						<id>bower install</id>
+						<goals>
+							<goal>bower</goal>
+						</goals>
+						<configuration>
+							<arguments>install</arguments>
+						</configuration>
+					</execution>
 
-                    <execution>
-                        <id>javascript tests</id>
-                        <goals>
-                            <goal>karma</goal>
-                        </goals>
-                        <configuration>
-                            <karmaConfPath>../../test/frontend/javascript/karma.conf.ci.js</karmaConfPath>
-                        </configuration>
-                    </execution>
+					<execution>
+						<id>grunt build</id>
+						<goals>
+							<goal>grunt</goal>
+						</goals>
+						<configuration>
+							<arguments>--no-color</arguments>
+						</configuration>
+					</execution>
 
-                </executions>
-            </plugin>
-	
+					<execution>
+						<id>javascript tests</id>
+						<goals>
+							<goal>karma</goal>
+						</goals>
+						<configuration>
+							<karmaConfPath>../../test/frontend/javascript/karma.conf.ci.js</karmaConfPath>
+						</configuration>
+					</execution>
+
+				</executions>
+			</plugin>
+
 			<!-- Backend -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -148,7 +157,32 @@
 					</jvmArguments>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>install</phase>
+						<configuration>
+							<target>
+								<!-- Place any Ant task here. You can add anything you can add between 
+									<target> and </target> in a build.xml. -->
+								<echo message="Current working directory in parent: ${basedir}" />
+								<copy todir="src/main/resources/static">
+									<fileset dir="src/main/frontend/javascript" />
+								</copy>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
+		<!-- <resources> <resource> <directory>src/main/frontend/javascript</directory> 
+			<includes> <include>**/*.js</include> </includes> <targetPath>src/main/resources/static</targetPath> 
+			</resource> </resources> -->
 	</build>
 	<packaging>jar</packaging>
 </project>

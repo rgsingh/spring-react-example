@@ -1,4 +1,4 @@
-package com.winterbe.react;
+package com.rgsinfotech.react;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;

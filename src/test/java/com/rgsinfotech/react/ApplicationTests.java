@@ -1,8 +1,11 @@
-package com.winterbe.react;
+package com.rgsinfotech.react;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.web.WebAppConfiguration;
+
+import com.rgsinfotech.react.Application;
+
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
