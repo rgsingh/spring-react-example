@@ -9,6 +9,7 @@
 <body>
 <div id="content">${content}</div>
 <script type="text/javascript" src="commentBox.js"></script>
+<script type="text/javascript" src="square.js"></script>
 <script type="text/javascript">
     $(function () {
         renderClient(${data});

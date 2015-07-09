@@ -5,19 +5,21 @@ var CommentForm = React.createClass({
         e.preventDefault();
         var author = this.refs.author.getDOMNode().value.trim();
         var text = this.refs.text.getDOMNode().value.trim();
+        var squareable = this.refs.squareable.getDOMNode().value.trim();
         if (!author || !text) {
             return;
         }
-        this.props.onCommentSubmit({author: author, text: text});
+        this.props.onCommentSubmit({author: author, text: text, squareable: squareable});
         this.refs.author.getDOMNode().value = '';
         this.refs.text.getDOMNode().value = '';
+        this.refs.squareable.getDOMNode().value = '';
     },
     render: function () {
         return (
             <form className="commentForm" onSubmit={this.handleSubmit}>
                 <input type="text" placeholder="Your awesome name" ref="author" />
                 <input type="text" placeholder="Say something..." ref="text" />
-                <input type="text" placeholder="javascript:square(2);" ref="text" /> 
+                <input type="text" placeholder="Number to square" ref="squareable" /> 
                 <input type="submit" value="Post" />
             </form>
         );
@@ -39,9 +41,11 @@ var Comment = React.createClass({
 var CommentList = React.createClass({
     render: function () {
         var commentNodes = this.props.data.map(function (comment, index) {
-            return (
+            var squaredVal = (comment.squareable == null ? 0: square(comment.squareable));
+        	
+        	return (
                 <Comment author={comment.author} key={index}>
-                    {comment.text}
+                    {comment.text}{squaredVal}
                 </Comment>
             );
         });
